@@ -2,94 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For You 🌸</title>
+  <title>Hey You 🐾</title>
   <style>
     body {
       background-color: #fff0f5;
+      font-family: 'Segoe UI', sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
       flex-direction: column;
       text-align: center;
+      height: 100vh;
+      margin: 0;
     }
-    #flower, #smileButton, #smileText, #finalMessage {
+    img {
+      max-width: 90%;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      margin: 20px 0;
       display: none;
+    }
+    #message, #smileText, #finalMessage {
+      display: none;
+      font-size: 1.5rem;
       margin-top: 20px;
-    }
-    #flower {
-      max-width: 80%;
-      border-radius: 16px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      animation: fadeIn 2s;
-    }
-    #smileButton {
-      padding: 10px 20px;
-      font-size: 1.2rem;
-      color: white;
-      background-color: #d63384;
-      border: none;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      animation: fadeIn 2s;
     }
     #smileText {
       font-size: 2rem;
       color: #ff69b4;
-      animation: fadeIn 2s;
     }
     #finalMessage {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       color: #8b008b;
       white-space: pre-wrap;
     }
-    h1 {
-      color: #d63384;
-      font-size: 2rem;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
   </style>
 </head>
-<body onclick="showFlower()" ontouchstart="showFlower()">
-  <h1>Touch me for a surprise 🌷</h1>
+<body>
 
+  <img id="cat1" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4yfAVgoLZZYZ1roM64FByMubG3E2tTFTqFYk36p2wayemW9GRABwXC2Z9rNX-8B2LGM2QqQiu0BKPJsSBTUKHFHWkTsVLeNxrbue7NNpSy9NP_vGEvkJP6-k7-3OHZPAkCGpJow9BeVwFGbsfRHvFSVzUMMsD8r6zfrKlw_qFyWB6WPWWRDEYm_fsOyk/s848/cat%202.jpg" alt="Cat 1">
+  <img id="cat2" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4d375fOAntYKAxw351BufJfdHnSEsmNuUpphF1RxbndQPVH8cIqEBSGIbt1hyj0mM-AA0CHHli00auGQOJe7FyNPEWmpJWAeC0-0Z7iu6l6uKP7Beha_2z_VeDuWTc3r1h1RELNIvabXwlCaAY9KfIJJ0Id8CjrEBzT7psKevm_UhdjGmWzQdCKX75hs/s848/cat%201.jpg" alt="Cat 2">
+  <img id="cat3" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtKbMdLQXjqdMFz5AUio_L9GzF-90YIZpZv_-wEmsy1-Ou_tFr0cbYHWi1Qbom4ynTqG1R7YxyoSb8u0o0iJj1F-jKn_far0DHLxAp8y36I-Wh-_yy0alGJsTz4UEy2aMx-ES6BX85D0pz68eeXygBSJ4W_tA8nLLopgPNfE6eITLi2tGnOS0GhF9W2s4/s1885/cat%203.jpg" alt="Cat 3">
   <img id="flower" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5cQ8-Dbwaxa6wmoalm4KqjRQ-UhmIjlILwEeMZ83IxyYQrXkXJ91fysyNZICpQMz-dsSIJVWpHz_wKr0jPv_PcMb51Lb2OqIp-5Zq71HmTj4p1zURjVg5HJB8ZZ9wOAk3jmfpJiooKJWUZQqmqiGs1z2kSAyreaobBIxeWhzZInGGelD71nUofColNM8/s848/rachakka.jpg" alt="Flower">
 
-  <button id="smileButton" onclick="showSmile()" ontouchstart="showSmile()">Click me 🌸</button>
-
+  <div id="message"></div>
   <div id="smileText">Smile Please 😊</div>
   <div id="finalMessage"></div>
 
+  <audio id="audioPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
   <script>
-  document.addEventListener("DOMContentLoaded", () => {
+    const cat1 = document.getElementById("cat1");
+    const cat2 = document.getElementById("cat2");
+    const cat3 = document.getElementById("cat3");
     const flower = document.getElementById("flower");
-    const smileButton = document.getElementById("smileButton");
+    const message = document.getElementById("message");
     const smileText = document.getElementById("smileText");
     const finalMessage = document.getElementById("finalMessage");
+    const audioPlayer = document.getElementById("audioPlayer");
 
-    let clicked = false;
+    let step = 0;
+
+    window.onload = () => {
+      cat1.style.display = "block";
+      message.style.display = "block";
+      message.textContent = "Loading something cute...";
+    };
 
     document.body.addEventListener("click", () => {
-      if (!clicked) {
+      // Play music every click
+      audioPlayer.currentTime = 0;
+      audioPlayer.play();
+
+      step++;
+
+      if (step === 1) {
+        cat1.style.display = "none";
+        cat2.style.display = "block";
+        message.textContent = "Don't leave the website 😼";
+      } else if (step === 2) {
+        cat2.style.display = "none";
+        cat3.style.display = "block";
+        message.textContent = "Sorry 😿... but I have a surprise for you!";
+      } else if (step === 3) {
+        cat3.style.display = "none";
+        message.style.display = "none";
         flower.style.display = "block";
-        smileButton.style.display = "inline-block";
-        clicked = true;
+        smileText.style.display = "block";
+
+        setTimeout(() => {
+          typeMessage(finalMessage, "This is what I need, have a great day my friend.");
+        }, 1000);
       }
     });
 
-    smileButton.addEventListener("click", () => {
-      smileText.style.display = "block";
-      setTimeout(() => typeMessage(finalMessage), 1000);
-    });
-
-    function typeMessage(el) {
-      const text = "This is what I need, have a great day my friend.";
+    function typeMessage(el, text) {
       let i = 0;
       const speed = 80;
       el.style.display = "block";
@@ -104,8 +111,6 @@
       }
       type();
     }
-  });
-</script>
-
+  </script>
 </body>
 </html>
