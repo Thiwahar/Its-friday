@@ -1,1 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For You 🌸</title>
+  <style>
+    body {
+      background-color: #fff0f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      flex-direction: column;
+      text-align: center;
+    }
+    #flower, #smileButton, #smileText, #finalMessage {
+      display: none;
+      margin-top: 20px;
+    }
+    #flower {
+      max-width: 80%;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      animation: fadeIn 2s;
+    }
+    #smileButton {
+      padding: 10px 20px;
+      font-size: 1.2rem;
+      color: white;
+      background-color: #d63384;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      animation: fadeIn 2s;
+    }
+    #smileText {
+      font-size: 2rem;
+      color: #ff69b4;
+      animation: fadeIn 2s;
+    }
+    #finalMessage {
+      font-size: 1.5rem;
+      color: #8b008b;
+      white-space: pre-wrap;
+    }
+    h1 {
+      color: #d63384;
+      font-size: 2rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body onclick="showFlower()" ontouchstart="showFlower()">
+  <h1>Touch me for a surprise 🌷</h1>
 
+  <img id="flower" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5cQ8-Dbwaxa6wmoalm4KqjRQ-UhmIjlILwEeMZ83IxyYQrXkXJ91fysyNZICpQMz-dsSIJVWpHz_wKr0jPv_PcMb51Lb2OqIp-5Zq71HmTj4p1zURjVg5HJB8ZZ9wOAk3jmfpJiooKJWUZQqmqiGs1z2kSAyreaobBIxeWhzZInGGelD71nUofColNM8/s848/rachakka.jpg" alt="Flower">
+
+  <button id="smileButton" onclick="showSmile()" ontouchstart="showSmile()">Click me 🌸</button>
+
+  <div id="smileText">Smile Please 😊</div>
+  <div id="finalMessage"></div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const flower = document.getElementById("flower");
+    const smileButton = document.getElementById("smileButton");
+    const smileText = document.getElementById("smileText");
+    const finalMessage = document.getElementById("finalMessage");
+
+    let clicked = false;
+
+    document.body.addEventListener("click", () => {
+      if (!clicked) {
+        flower.style.display = "block";
+        smileButton.style.display = "inline-block";
+        clicked = true;
+      }
+    });
+
+    smileButton.addEventListener("click", () => {
+      smileText.style.display = "block";
+      setTimeout(() => typeMessage(finalMessage), 1000);
+    });
+
+    function typeMessage(el) {
+      const text = "This is what I need, have a great day my friend.";
+      let i = 0;
+      const speed = 80;
+      el.style.display = "block";
+      el.textContent = "";
+
+      function type() {
+        if (i < text.length) {
+          el.textContent += text.charAt(i);
+          i++;
+          setTimeout(type, speed);
+        }
+      }
+      type();
+    }
+  });
+</script>
+
+</body>
+</html>
