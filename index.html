@@ -44,27 +44,35 @@
   <img id="cat2" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh4d375fOAntYKAxw351BufJfdHnSEsmNuUpphF1RxbndQPVH8cIqEBSGIbt1hyj0mM-AA0CHHli00auGQOJe7FyNPEWmpJWAeC0-0Z7iu6l6uKP7Beha_2z_VeDuWTc3r1h1RELNIvabXwlCaAY9KfIJJ0Id8CjrEBzT7psKevm_UhdjGmWzQdCKX75hs/s848/cat%201.jpg" alt="Cat 2">
   <img id="cat3" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgtKbMdLQXjqdMFz5AUio_L9GzF-90YIZpZv_-wEmsy1-Ou_tFr0cbYHWi1Qbom4ynTqG1R7YxyoSb8u0o0iJj1F-jKn_far0DHLxAp8y36I-Wh-_yy0alGJsTz4UEy2aMx-ES6BX85D0pz68eeXygBSJ4W_tA8nLLopgPNfE6eITLi2tGnOS0GhF9W2s4/s1885/cat%203.jpg" alt="Cat 3">
   <img id="flower" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj5cQ8-Dbwaxa6wmoalm4KqjRQ-UhmIjlILwEeMZ83IxyYQrXkXJ91fysyNZICpQMz-dsSIJVWpHz_wKr0jPv_PcMb51Lb2OqIp-5Zq71HmTj4p1zURjVg5HJB8ZZ9wOAk3jmfpJiooKJWUZQqmqiGs1z2kSAyreaobBIxeWhzZInGGelD71nUofColNM8/s848/rachakka.jpg" alt="Flower">
+  <img id="flower2" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgIIH2wZYs7OQAIJKFIC_mnMzykmYM8Sh0QIHkMM0Fhnk3Q_N44_yo2K686UNpEKieN5KtQxZ764OnZ8zWeI3zJK9_qqMbdbIC-SD5lReuoMqb9z8Z9fJFBbmbSw61TwDa5fd2d2I0ZkWU6TRZFXkit_IVgNmsRTLBxTFfGe_O0zowc1ajyrt-5DGO7yv8/s848/flow1.jpg" alt="Flower 2">
+  <img id="flower3" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgwoBvTlPESMeEvOCiPOPfmb6-FlJkY4Vt_KQ5nGClg13rVL7iOtDSlOGuathReNRdGe0sz-oU45YXNjajKQnX0qzsvoXSX84KEqMIj8ckqE4-g6qUIlgsyWGlNsP4Jrx2vaBfjR0bKBDKoGN2dEwPb5pOA_sfh-o-ZCR4rbx8ueJ768znqqCMJkrWTAXM/s848/flow2.jpg" alt="Flower 3">
+  <img id="funnyCat" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgC2DHvni0QXxMzzM34xC8j2hubwNvaj8Xvm3oR9GAcxHwMIJWP2HQSlXT2-V7E_GcR5UBMwvxTXr31jE3tgAtoc7OQDmoc0EcfcplLF5KVzxg82QlmS1r16q9atL640GRSkWMtfj46rc5y1sK3oOADFk8qqw6zRhcrvPOW0YMYc77K2yFdBgpNF8IEEEw/s860/meow.jpg" alt="Funny Cat">
 
   <div id="message"></div>
-  <div id="smileText">Smile Please 😊</div>
+  <div id="smileText">Smile Please 😺</div>
   <div id="finalMessage"></div>
 
   <audio id="audioPlayer" src="https://raw.githubusercontent.com/Thiwahar/Its-friday/main/goofy.mp3" loop></audio>
+  <audio id="catAudio" src="https://raw.githubusercontent.com/Thiwahar/Its-friday/main/Sneaky.mp3"></audio>
 
   <script>
     const cat1 = document.getElementById("cat1");
     const cat2 = document.getElementById("cat2");
     const cat3 = document.getElementById("cat3");
     const flower = document.getElementById("flower");
+    const flower2 = document.getElementById("flower2");
+    const flower3 = document.getElementById("flower3");
+    const funnyCat = document.getElementById("funnyCat");
     const message = document.getElementById("message");
     const smileText = document.getElementById("smileText");
     const finalMessage = document.getElementById("finalMessage");
     const audioPlayer = document.getElementById("audioPlayer");
+    const catAudio = document.getElementById("catAudio");
 
     let step = 0;
 
     window.onload = () => {
-      // Start playing the audio automatically
+      // Start playing the first audio automatically
       audioPlayer.play();
       
       cat1.style.display = "block";
@@ -81,22 +89,36 @@
       if (step === 1) {
         cat1.style.display = "none";
         cat2.style.display = "block";
-        message.textContent = "Don't leave the website 😼";
+        message.textContent = "Don't leave the website 😿";
         setTimeout(nextStep, 4000);
       } else if (step === 2) {
         cat2.style.display = "none";
         cat3.style.display = "block";
-        message.textContent = "Sorry 😿... but I have a surprise for you!";
+        message.textContent = "Sorry 😿... but this gujjy muggy meow have a surprise for you!";
         setTimeout(nextStep, 4000);
       } else if (step === 3) {
         cat3.style.display = "none";
         message.style.display = "none";
         flower.style.display = "block";
         smileText.style.display = "block";
-
-        setTimeout(() => {
-          typeMessage(finalMessage, "This is what I need, have a great day my friend.");
-        }, 1000);
+        setTimeout(nextStep, 4000);
+      } else if (step === 4) {
+        flower.style.display = "none";
+        flower2.style.display = "block";
+        setTimeout(nextStep, 4000);
+      } else if (step === 5) {
+        flower2.style.display = "none";
+        flower3.style.display = "block";
+        setTimeout(nextStep, 4000);
+      } else if (step === 6) {
+        flower3.style.display = "none";
+        // Stop the first audio and play the cat audio
+        audioPlayer.pause();
+        catAudio.loop = true;
+        catAudio.play();
+        
+        funnyCat.style.display = "block";
+        typeMessage(finalMessage, "MEOW! Have a purr-fect day mam!!! and ur are not POOKIE, an agmark PORIKIE 🙈");
       }
     }
 
