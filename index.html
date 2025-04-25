@@ -67,34 +67,45 @@
   <div id="finalMessage"></div>
 
   <script>
-    function showFlower() {
-      document.getElementById("flower").style.display = "block";
-      document.getElementById("smileButton").style.display = "inline-block";
-    }
+  document.addEventListener("DOMContentLoaded", () => {
+    const flower = document.getElementById("flower");
+    const smileButton = document.getElementById("smileButton");
+    const smileText = document.getElementById("smileText");
+    const finalMessage = document.getElementById("finalMessage");
 
-    function showSmile() {
-      document.getElementById("smileText").style.display = "block";
-      setTimeout(typeMessage, 1000);
-    }
+    let clicked = false;
 
-    function typeMessage() {
+    document.body.addEventListener("click", () => {
+      if (!clicked) {
+        flower.style.display = "block";
+        smileButton.style.display = "inline-block";
+        clicked = true;
+      }
+    });
+
+    smileButton.addEventListener("click", () => {
+      smileText.style.display = "block";
+      setTimeout(() => typeMessage(finalMessage), 1000);
+    });
+
+    function typeMessage(el) {
       const text = "This is what I need, have a great day my friend.";
       let i = 0;
-      const speed = 80; // milliseconds per letter
-      const target = document.getElementById("finalMessage");
-      target.style.display = "block";
-      target.textContent = "";
+      const speed = 80;
+      el.style.display = "block";
+      el.textContent = "";
 
       function type() {
         if (i < text.length) {
-          target.textContent += text.charAt(i);
+          el.textContent += text.charAt(i);
           i++;
           setTimeout(type, speed);
         }
       }
-
       type();
     }
-  </script>
+  });
+</script>
+
 </body>
 </html>
